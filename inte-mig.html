@@ -1,0 +1,9 @@
+<!doctype html><html lang=sv><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content=noindex><title>Statistik</title><link rel=icon href="/favicon.svg" type="image/svg+xml">
+<style>body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:#E9E1D0;color:#1E2B28;font:18px/1.5 system-ui,sans-serif;padding:24px;text-align:center}button{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;border:0;background:#2F5D50;color:#fff;cursor:pointer}button.alt{background:transparent;color:#2F5D50;border:2px solid #2F5D50}</style>
+<p id=s></p><button onclick="set(1)">Räkna inte mina besök</button><button class=alt onclick="set(0)">Räkna mina besök igen</button>
+<script>
+function show(){var d;try{d=localStorage.getItem('umami.disabled')}catch(e){}document.getElementById('s').textContent=d?'Dina besök från den här webbläsaren räknas inte.':'Dina besök från den här webbläsaren räknas just nu.'}
+function set(v){try{v?localStorage.setItem('umami.disabled','1'):localStorage.removeItem('umami.disabled')}catch(e){}show()}
+show()
+</script></html>
