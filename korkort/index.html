@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Körkortet i telefonen</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow, noarchive">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="Gör en skarp bild av koden på ditt körkort och lägg den som widget på hemskärmen. Allt sker i din telefon.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Hanken+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#E9E1D0; --card:#F4EFE4; --txt:#1E2B28; --mut:#5F665F; --line:#D3C9B4; --acc:#D9634C; --ok:#2F5D50;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --bg:#1A2321; --card:#22302C; --txt:#EDE7DA; --mut:#A9B0A9; --line:#3A4945; --acc:#E57A64; --ok:#6FA894; }
+  }
+  :root[data-theme="dark"]{ --bg:#1A2321; --card:#22302C; --txt:#EDE7DA; --mut:#A9B0A9; --line:#3A4945; --acc:#E57A64; --ok:#6FA894; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:"Hanken Grotesk",system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+  .stripe{display:flex;height:8px} .stripe i{flex:1}
+  main{max-width:560px;margin:0 auto;padding:28px 16px 48px}
+  .label{font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+  h1{font-weight:800;font-size:clamp(32px,9vw,44px);line-height:1.05;margin:10px 0 12px}
+  h1 em{font-style:normal;color:var(--acc)}
+  .lead{font-size:18px;color:var(--txt)}
+  .hand{font-family:"Gochi Hand",cursive;color:var(--acc);font-size:22px;margin-top:8px}
+  section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:18px}
+  h2{font-size:18px;font-weight:800;display:flex;gap:10px;align-items:baseline}
+  h2 .n{font-family:"Gochi Hand",cursive;color:var(--acc);font-size:28px;font-weight:400}
+  p{margin-top:6px}
+  .mut{color:var(--mut);font-size:15px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:14px;border:0;
+       background:var(--acc);color:#fff;font:700 16px "Hanken Grotesk",sans-serif;cursor:pointer;margin-top:12px;text-decoration:none}
+  .btn.sec{background:transparent;color:var(--txt);border:2px solid var(--line)}
+  .btn[disabled]{opacity:.45;cursor:default}
+  input[type=file]{display:none}
+  .row{display:flex;flex-wrap:wrap;gap:10px}
+  .status{margin-top:12px;font-weight:700}
+  .status.err{color:var(--acc)} .status.ok{color:var(--ok)}
+  .preview{display:flex;gap:16px;align-items:center;margin-top:14px;flex-wrap:wrap}
+  .widget{width:170px;height:170px;border-radius:38px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.18);background:#fff;flex:none}
+  .widget img{width:100%;height:100%;display:block}
+  label.sl{display:block;margin-top:14px;font-weight:700;font-size:15px}
+  input[type=range]{width:100%;accent-color:var(--acc);margin-top:6px}
+  ol{margin:8px 0 0 20px} ol li{margin-top:6px}
+  details{margin-top:12px} summary{cursor:pointer;font-weight:700;font-size:15px}
+  .content{font-family:ui-monospace,Menlo,monospace;font-size:14px;word-break:break-all;background:var(--bg);padding:8px 10px;border-radius:8px;margin-top:8px}
+  .note{border-left:4px solid var(--acc);padding-left:12px}
+  footer{margin-top:28px;font-size:14px;color:var(--mut);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+  .me{font-weight:700;letter-spacing:.14em;color:var(--txt);display:flex;gap:10px;align-items:center}
+  .dots{display:flex;gap:4px} .dots i{width:8px;height:8px;border-radius:50%}
+  canvas{display:none}
+</style>
+</head>
+<body>
+<div class="stripe"><i style="background:#2F5D50"></i><i style="background:#3C6E91"></i><i style="background:#E0A93B"></i><i style="background:#D9634C"></i><i style="background:#6E4C6B"></i></div>
+<main>
+  <div class="label">Handel och betalningar</div>
+  <h1>Körkortet i <em>telefonen.</em></h1>
+  <p class="lead">Gör en skarp bild av koden på körkortets baksida och lägg den som widget på hemskärmen. Då visar du telefonen i kassan i stället för att leta fram plånboken.</p>
+  <p class="hand">Allt sker i din telefon. Ingenting skickas någonstans.</p>
+
+  <section>
+    <h2><span class="n">1</span> Fotografera koden</h2>
+    <p>Ta en bild på den fyrkantiga koden på körkortets baksida, eller välj en bild du redan har. Rakt ovanifrån, skarpt och utan reflexer fungerar bäst.</p>
+    <div class="row">
+      <button class="btn" id="pick">Välj eller ta bild</button>
+    </div>
+    <input type="file" id="file" accept="image/*">
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+  </section>
+
+  <section id="s2" hidden>
+    <h2><span class="n">2</span> Kontrollera och justera</h2>
+    <p>Koden är ritad på nytt, skarp och i svart på vitt. Så här ser den ut i widgeten:</p>
+    <div class="preview">
+      <div class="widget"><img id="out" alt="Förhandsvisning av widgeten med din kod"></div>
+      <div class="mut">Koden tar ungefär en tredjedel av widgeten. Då blir den ungefär lika stor på skärmen som på körkortet.</div>
+    </div>
+    <label class="sl" for="size">Kodens storlek i widgeten: <span id="sizev">32</span> %</label>
+    <input type="range" id="size" min="20" max="70" value="32">
+    <details>
+      <summary>Visa vad koden innehåller</summary>
+      <p class="mut">Kontrollera att det ser rimligt ut, till exempel ditt personnummer. Visa det inte för någon annan.</p>
+      <div class="content" id="content"></div>
+    </details>
+  </section>
+
+  <section id="s3" hidden>
+    <h2><span class="n">3</span> Spara bilden</h2>
+    <div class="row">
+      <button class="btn" id="share">Spara bild</button>
+      <a class="btn sec" id="dl" download="korkortskod.png">Ladda ned PNG</a>
+    </div>
+    <p class="mut">På iPhone: tryck Spara bild och välj Spara bild i delningsmenyn.</p>
+  </section>
+
+  <section id="s4" hidden>
+    <h2><span class="n">4</span> Lägg den på hemskärmen</h2>
+    <p><b>iPhone</b></p>
+    <ol>
+      <li>Öppna Bilder och skapa ett nytt album, till exempel ”Körkort”, med bara den här bilden.</li>
+      <li>Håll fingret på hemskärmen, tryck Redigera och sedan Lägg till widget.</li>
+      <li>Välj Bilder, lägg till widgeten och ställ in den att visa albumet.</li>
+    </ol>
+    <p style="margin-top:12px"><b>Android</b></p>
+    <p class="mut">Det finns liknande bildwidgetar, till exempel i Samsungs galleri, och fotowidget-appar i Play Butik. Det har jag inte testat själv.</p>
+  </section>
+
+  <section class="note">
+    <h2>Bra att veta</h2>
+    <p>Det här är ingen legitimation. Ska någon kontrollera vem du är gäller fortfarande körkortet.</p>
+    <p>Koden innehåller ditt personnummer. Dela inte bilden och lägg den inte där andra ser den, som på låsskärmen.</p>
+    <p class="mut">Sidan läser av koden med öppen källkod (zxing-wasm) och ritar den nya med bwip-js, direkt i webbläsaren. Bilden laddas aldrig upp.</p>
+  </section>
+
+  <footer>
+    <span>Ett litet kassahack.</span>
+    <span class="me"><span class="dots"><i style="background:#2F5D50"></i><i style="background:#3C6E91"></i><i style="background:#E0A93B"></i><i style="background:#D9634C"></i><i style="background:#6E4C6B"></i></span>HÅKAN NILSSON</span>
+  </footer>
+</main>
+<canvas id="code"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/zxing-wasm@2.2.4/dist/iife/reader/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bwip-js@4.5.1/dist/bwip-js-min.js"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const status = (t, cls) => { const s = $("status"); s.textContent = t; s.className = "status " + (cls || ""); };
+  let payload = null, pngBlob = null;
+
+  $("pick").addEventListener("click", () => $("file").click());
+  $("file").addEventListener("change", async e => {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    status("Läser av koden …");
+    try {
+      const results = await ZXingWASM.readBarcodes(f, { formats: ["DataMatrix"], tryHarder: true, maxNumberOfSymbols: 1 });
+      const r = results.find(x => x.isValid);
+      if (!r) { status("Hittade ingen kod. Prova en ny bild: närmare, rakt ovanifrån och utan reflexer.", "err"); return; }
+      payload = r.bytes && r.bytes.length ? r.bytes : new TextEncoder().encode(r.text);
+      $("content").textContent = r.text;
+      status("Koden är avläst.", "ok");
+      render();
+      ["s2", "s3", "s4"].forEach(id => $(id).hidden = false);
+      $("s2").scrollIntoView({ behavior: "smooth", block: "start" });
+    } catch (err) {
+      status("Något gick fel när koden skulle läsas av. Ladda om sidan och prova igen.", "err");
+      console.error(err);
+    }
+  });
+
+  // Bytes -> bwip-js text with ^NNN escapes for anything outside printable ASCII, so the content is kept exactly.
+  function toBwip(bytes) {
+    let s = "";
+    for (const b of bytes) s += (b >= 32 && b <= 126 && b !== 94) ? String.fromCharCode(b) : "^" + String(b).padStart(3, "0");
+    return s;
+  }
+
+  function render() {
+    if (!payload) return;
+    const pct = +$("size").value; $("sizev").textContent = pct;
+    const c = $("code");
+    bwipjs.toCanvas(c, { bcid: "datamatrix", text: toBwip(payload), parse: true, scale: 12, paddingwidth: 0, paddingheight: 0 });
+    const N = 1200, out = document.createElement("canvas"); out.width = out.height = N;
+    const g = out.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, N, N);
+    const w = Math.round(N * pct / 100); g.imageSmoothingEnabled = false;
+    g.drawImage(c, (N - w) / 2, (N - w) / 2, w, w);
+    out.toBlob(b => {
+      pngBlob = b;
+      const url = URL.createObjectURL(b);
+      $("out").src = url; $("dl").href = url;
+    }, "image/png");
+  }
+  $("size").addEventListener("input", render);
+
+  $("share").addEventListener("click", async () => {
+    if (!pngBlob) return;
+    const file = new File([pngBlob], "korkortskod.png", { type: "image/png" });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file] }); } catch (e) { /* user cancelled */ }
+    } else {
+      $("dl").click();
+    }
+  });
+})();
+</script>
+</body>
+</html>
