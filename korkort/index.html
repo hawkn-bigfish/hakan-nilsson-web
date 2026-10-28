@@ -116,6 +116,16 @@
     <p class="mut">Det finns liknande bildwidgetar, till exempel i Samsungs galleri, och fotowidget-appar i Play Butik. Det har jag inte testat själv.</p>
   </section>
 
+  <section id="s5" hidden>
+    <h2><span class="n">5</span> Fungerade det i kassan?</h2>
+    <p>Svara när du har testat. Det är anonymt och hjälper mig att se om tipset håller.</p>
+    <div class="row" id="fbrow">
+      <button class="btn" data-fb="ja">Ja, det fungerade</button>
+      <button class="btn sec" data-fb="nej">Nej, det strulade</button>
+    </div>
+    <p class="status ok" id="fbthanks" hidden>Tack! Berätta gärna mer, till exempel vilken butik och vilken telefon, i kommentarerna under inlägget på <a href="https://www.linkedin.com/in/hakan---nilsson/" style="color:inherit">LinkedIn</a>.</p>
+  </section>
+
   <section class="note">
     <h2>Bra att veta</h2>
     <p>Det här är ingen legitimation. Ska någon kontrollera vem du är gäller fortfarande körkortet.</p>
@@ -137,27 +147,31 @@
   const $ = id => document.getElementById(id);
   const status = (t, cls) => { const s = $("status"); s.textContent = t; s.className = "status " + (cls || ""); };
   let payload = null, pngBlob = null;
+  // Anonymous Umami events. Only the outcome is sent, never the image or the content of the code.
+  const track = (name, data) => { try { if (window.umami) window.umami.track(name, data); } catch (e) {} };
 
   $("cam").addEventListener("click", () => $("camfile").click());
   $("pick").addEventListener("click", () => $("file").click());
-  $("camfile").addEventListener("change", e => handle(e));
-  $("file").addEventListener("change", e => handle(e));
-  async function handle(e) {
+  $("camfile").addEventListener("change", e => handle(e, "kamera"));
+  $("file").addEventListener("change", e => handle(e, "bild"));
+  async function handle(e, src) {
     const f = e.target.files && e.target.files[0];
     if (!f) return;
     status("Läser av koden …");
     try {
       const results = await ZXingWASM.readBarcodes(f, { formats: ["DataMatrix"], tryHarder: true, maxNumberOfSymbols: 1 });
       const r = results.find(x => x.isValid);
-      if (!r) { status("Hittade ingen kod. Prova en ny bild: närmare, rakt ovanifrån och utan reflexer.", "err"); return; }
+      if (!r) { status("Hittade ingen kod. Prova en ny bild: närmare, rakt ovanifrån och utan reflexer.", "err"); track("korkort-avlasning", { resultat: "ingen kod", kalla: src }); return; }
       payload = r.bytes && r.bytes.length ? r.bytes : new TextEncoder().encode(r.text);
       $("content").textContent = r.text;
       status("Koden är avläst.", "ok");
+      track("korkort-avlasning", { resultat: "ok", kalla: src });
       render();
-      ["s2", "s3", "s4"].forEach(id => $(id).hidden = false);
+      ["s2", "s3", "s4", "s5"].forEach(id => $(id).hidden = false);
       $("s2").scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (err) {
       status("Något gick fel när koden skulle läsas av. Ladda om sidan och prova igen.", "err");
+      track("korkort-avlasning", { resultat: "fel", kalla: src });
       console.error(err);
     } finally {
       e.target.value = "";   // so the same photo can be chosen again
@@ -188,8 +202,14 @@
   }
   $("size").addEventListener("input", render);
 
+  document.querySelectorAll("[data-fb]").forEach(b => b.addEventListener("click", () => {
+    track("korkort-fungerade", { svar: b.dataset.fb });
+    $("fbrow").hidden = true; $("fbthanks").hidden = false;
+  }));
+
   $("share").addEventListener("click", async () => {
     if (!pngBlob) return;
+    track("korkort-spara", { storlek: +$("size").value });
     const file = new File([pngBlob], "korkortskod.png", { type: "image/png" });
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
       try { await navigator.share({ files: [file] }); } catch (e) { /* user cancelled */ }
