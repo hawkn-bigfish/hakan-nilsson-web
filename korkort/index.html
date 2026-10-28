@@ -68,10 +68,12 @@
 
   <section>
     <h2><span class="n">1</span> Fotografera koden</h2>
-    <p>Ta en bild på den fyrkantiga koden på körkortets baksida, eller välj en bild du redan har. Rakt ovanifrån, skarpt och utan reflexer fungerar bäst.</p>
+    <p>Ta en bild på den fyrkantiga koden på körkortets baksida, eller välj en bild du redan har i telefonen. Rakt ovanifrån, skarpt och utan reflexer fungerar bäst.</p>
     <div class="row">
-      <button class="btn" id="pick">Välj eller ta bild</button>
+      <button class="btn" id="cam">Ta bild</button>
+      <button class="btn sec" id="pick">Välj bild</button>
     </div>
+    <input type="file" id="camfile" accept="image/*" capture="environment">
     <input type="file" id="file" accept="image/*">
     <div class="status" id="status" role="status" aria-live="polite"></div>
   </section>
@@ -135,8 +137,11 @@
   const status = (t, cls) => { const s = $("status"); s.textContent = t; s.className = "status " + (cls || ""); };
   let payload = null, pngBlob = null;
 
+  $("cam").addEventListener("click", () => $("camfile").click());
   $("pick").addEventListener("click", () => $("file").click());
-  $("file").addEventListener("change", async e => {
+  $("camfile").addEventListener("change", e => handle(e));
+  $("file").addEventListener("change", e => handle(e));
+  async function handle(e) {
     const f = e.target.files && e.target.files[0];
     if (!f) return;
     status("Läser av koden …");
@@ -153,8 +158,10 @@
     } catch (err) {
       status("Något gick fel när koden skulle läsas av. Ladda om sidan och prova igen.", "err");
       console.error(err);
+    } finally {
+      e.target.value = "";   // so the same photo can be chosen again
     }
-  });
+  }
 
   // Bytes -> bwip-js text with ^NNN escapes for anything outside printable ASCII, so the content is kept exactly.
   function toBwip(bytes) {
