@@ -25,9 +25,9 @@
   body{background:var(--bg);color:var(--txt);font-family:"Hanken Grotesk",system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
   .stripe{display:flex;height:8px} .stripe i{flex:1}
   main{max-width:560px;margin:0 auto;padding:28px 16px 48px}
-  .label{font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--acc)}
+  .label{font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
   h1{font-weight:800;font-size:clamp(32px,9vw,44px);line-height:1.05;margin:10px 0 12px}
-  h1 em{font-style:normal;color:var(--acc)}
+  h1 em{font-style:normal;color:inherit;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='16' viewBox='0 0 200 16'><path d='M2 10 C 40 3, 80 14, 120 7 S 180 4, 198 9' fill='none' stroke='%23D9634C' stroke-width='4' stroke-linecap='round'/></svg>") left bottom/100% 12px no-repeat;padding-bottom:6px}
   .lead{font-size:18px;color:var(--txt)}
   .hand{font-family:"Gochi Hand",cursive;color:var(--acc);font-size:22px;margin-top:8px}
   section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:18px}
@@ -62,7 +62,7 @@
 <body>
 <div class="stripe"><i style="background:#2F5D50"></i><i style="background:#3C6E91"></i><i style="background:#E0A93B"></i><i style="background:#D9634C"></i><i style="background:#6E4C6B"></i></div>
 <main>
-  <div class="label">Handel och betalningar</div>
+  <div class="label">Experiment</div>
   <h1>Körkortet i <em>telefonen.</em></h1>
   <p class="lead">Gör en skarp bild av koden på körkortets baksida och lägg den som widget på hemskärmen. Då visar du telefonen i kassan i stället för att leta fram plånboken.</p>
   <p class="hand">Bilden och koden lämnar aldrig din telefon.</p>
