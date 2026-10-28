@@ -56,9 +56,8 @@
   .me{font-weight:700;letter-spacing:.14em;color:var(--txt);display:flex;gap:10px;align-items:center}
   .dots{display:flex;gap:4px} .dots i{width:8px;height:8px;border-radius:50%}
   canvas{display:none}
-  details.info{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
-  details.info summary{font-weight:700}
-  details.info p{margin-top:8px}
+  div.info{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+  div.info p{margin-top:8px}
 
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="d91f61fa-3d75-4a39-abb6-3322f1e78047"></script>
@@ -69,8 +68,8 @@
   <div class="label">Experiment</div>
   <h1>Körkortet i <em>telefonen.</em></h1>
   <p class="lead">Gör en skarp bild av koden på körkortets baksida och lägg den som widget på hemskärmen. Då visar du telefonen i kassan i stället för att leta fram plånboken.</p>
-  <details class="info">
-    <summary>Läs mer: vilken kod menar vi?</summary>
+  <div class="info">
+    <h2>Vilken kod menar vi?</h2>
     <svg viewBox="0 0 340 230" width="100%" style="max-width:420px;display:block;margin:12px 0 4px" role="img" aria-label="Schematisk bild av ett kort med en liten fyrkantig kod i nedre högra hörnet">
       <rect x="10" y="10" width="300" height="190" rx="16" fill="#FBF8F1" stroke="#B9C0BB" stroke-width="2"/>
       <rect x="32" y="36" width="150" height="10" rx="5" fill="#D3C9B4"/>
@@ -85,7 +84,7 @@
     </svg>
     <p class="mut">Schematisk bild, inte ett riktigt körkort.</p>
     <p>Vi menar den lilla fyrkantiga koden av svarta och vita rutor på körkortet, en så kallad Data Matrix-kod. Den innehåller ditt personnummer, och det är den som kassan skannar när de ber om körkortet. En vanlig streckkod med linjer eller en QR-kod är något annat.</p>
-  </details>
+  </div>
   <p class="hand">Bilden och koden lämnar aldrig din telefon.</p>
 
   <section>
