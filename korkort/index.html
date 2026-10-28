@@ -56,8 +56,9 @@
   .me{font-weight:700;letter-spacing:.14em;color:var(--txt);display:flex;gap:10px;align-items:center}
   .dots{display:flex;gap:4px} .dots i{width:8px;height:8px;border-radius:50%}
   canvas{display:none}
-  div.info{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
-  div.info p{margin-top:8px}
+  details.info{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+  details.info summary{font-weight:700;cursor:pointer}
+  details.info p{margin-top:8px}
 
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="d91f61fa-3d75-4a39-abb6-3322f1e78047"></script>
@@ -68,8 +69,8 @@
   <div class="label">Experiment</div>
   <h1>Körkortet i <em>telefonen.</em></h1>
   <p class="lead">Gör en skarp bild av koden på körkortets baksida och lägg den som widget på hemskärmen. Då visar du telefonen i kassan i stället för att leta fram plånboken.</p>
-  <div class="info">
-    <h2>Vilken kod menar vi?</h2>
+  <details class="info">
+    <summary>Vilken kod menar vi?</summary>
     <svg viewBox="0 0 340 245" width="100%" style="max-width:420px;display:block;margin:12px 0 4px" role="img" aria-label="Schematisk bild av körkortets baksida med den lilla fyrkantiga koden uppe till vänster">
       <rect x="10" y="40" width="300" height="190" rx="16" fill="#FBF8F1" stroke="#B9C0BB" stroke-width="2"/>
       <rect x="130" y="62" width="14" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="62" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="62" width="40" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="62" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="75" width="14" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="75" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="75" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="75" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="88" width="14" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="88" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="88" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="88" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="101" width="10" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="101" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="101" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="101" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="114" width="14" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="114" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="114" width="40" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="114" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="127" width="14" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="127" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="127" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="127" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="140" width="10" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="140" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="140" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="140" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="153" width="10" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="153" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="153" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="153" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="166" width="10" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="166" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="166" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="166" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="179" width="14" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="179" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="179" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="179" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="192" width="14" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="192" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="192" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="192" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="130" y="205" width="14" height="6" rx="3" fill="#D3C9B4"/><rect x="154" y="205" width="22" height="6" rx="3" fill="#E2DACB"/><rect x="190" y="205" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="238" y="205" width="12" height="6" rx="3" fill="#E2DACB"/><rect x="280" y="60" width="5" height="150" rx="2.5" fill="#E2DACB"/><rect x="289" y="60" width="5" height="150" rx="2.5" fill="#E2DACB"/><rect x="298" y="60" width="5" height="150" rx="2.5" fill="#E2DACB"/>
@@ -80,7 +81,7 @@
     </svg>
     <p class="mut">Schematisk bild av körkortets baksida, inte ett riktigt körkort.</p>
     <p>Vi menar den lilla fyrkantiga koden av svarta och vita rutor på körkortets baksida, en så kallad Data Matrix-kod. Den innehåller ditt personnummer, och det är den som kassan skannar när de ber om körkortet. En vanlig streckkod med linjer eller en QR-kod är något annat.</p>
-  </div>
+  </details>
   <p class="hand">Bilden och koden lämnar aldrig din telefon.</p>
 
   <section>
