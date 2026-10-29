@@ -9,7 +9,7 @@
 body{background:var(--bg);color:var(--ink);font-family:Sans,system-ui,sans-serif;font-size:18px;line-height:1.6;-webkit-text-size-adjust:100%}
 a{color:inherit}
 .band{display:flex;height:8px}.band i{flex:1}
-.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+.wrap{max-width:728px;margin:0 auto;padding:0 16px}
 @media (min-width:700px){.wrap{padding:0 24px}}
 header.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
 .mono{display:inline-flex;flex-direction:column;align-items:center;gap:4px;text-decoration:none;font-weight:800;font-size:26px;letter-spacing:.02em;line-height:1}
@@ -22,7 +22,7 @@ nav.lang a{color:var(--mute)}
 h1{font-weight:800;font-size:clamp(40px,10vw,72px);line-height:1.02;letter-spacing:-.01em;margin:10px 0 18px}
 h1 em{font-style:normal;color:var(--green)}
 h2{font-weight:800;font-size:clamp(26px,6vw,34px);line-height:1.15;margin:0 0 14px}
-.lead{font-size:clamp(20px,4.6vw,24px);line-height:1.45;max-width:30em}
+.lead{font-size:clamp(20px,4.6vw,24px);line-height:1.45}
 .hand{font-family:Hand,cursive;color:var(--coral);font-size:24px;line-height:1.2}
 section{padding:44px 0;border-top:1px solid var(--line)}
 section.hero{border-top:0;padding-top:28px}
@@ -64,5 +64,5 @@ footer.bottom .me{display:flex;align-items:center;gap:10px;font-weight:700;lette
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .li img,:root:not([data-theme="light"]) .li-foot img{background:#fff;padding:4px;border-radius:6px}}
 :root[data-theme="dark"] .li img,:root[data-theme="dark"] .li-foot img{background:#fff;padding:4px;border-radius:6px}
 .intro{width:100vw;margin-left:calc(50% - 50vw);margin-bottom:8px;line-height:0}
-.intro figcaption{line-height:1.4;font-size:13px;color:var(--mute);text-align:right;padding:6px 16px 0;max-width:860px;margin:0 auto}
+.intro figcaption{line-height:1.4;font-size:13px;color:var(--mute);text-align:right;padding:6px 16px 0;max-width:712px;margin:0 auto}
 .intro img{width:100%;height:clamp(240px,40vw,620px);object-fit:cover;object-position:50% 45%;display:block}
