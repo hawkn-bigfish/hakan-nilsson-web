@@ -4,5 +4,6 @@
 <url><loc>https://hakannilsson.com/en/</loc><xhtml:link rel="alternate" hreflang="sv" href="https://hakannilsson.com/sv/"/></url>
 <url><loc>https://hakannilsson.com/sv/experiment/</loc><xhtml:link rel="alternate" hreflang="en" href="https://hakannilsson.com/en/experiments/"/></url>
 <url><loc>https://hakannilsson.com/en/experiments/</loc><xhtml:link rel="alternate" hreflang="sv" href="https://hakannilsson.com/sv/experiment/"/></url>
-<url><loc>https://hakannilsson.com/sv/experiment/korkort/</loc></url>
+<url><loc>https://hakannilsson.com/sv/experiment/korkort/</loc><xhtml:link rel="alternate" hreflang="en" href="https://hakannilsson.com/en/experiments/korkort/"/></url>
+<url><loc>https://hakannilsson.com/en/experiments/korkort/</loc><xhtml:link rel="alternate" hreflang="sv" href="https://hakannilsson.com/sv/experiment/korkort/"/></url>
 </urlset>
