@@ -67,6 +67,7 @@
   details.info summary{font-weight:700;cursor:pointer}
   details.info p{margin-top:8px}
 
+[hidden]{display:none!important}
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="d91f61fa-3d75-4a39-abb6-3322f1e78047"></script>
 </head>
@@ -142,14 +143,14 @@
     <p class="mut">Det finns liknande bildwidgetar, till exempel i Samsungs galleri, och fotowidget-appar i Play Butik. Det har jag inte testat själv.</p>
   </section>
 
-  <section id="s5" hidden>
-    <h2><span class="n">5</span> Fungerade det i kassan?</h2>
-    <p>Svara när du har testat. Det är anonymt och hjälper mig att se om tipset håller.</p>
+  <section id="s5">
+    <h2>Vad tycker du om experimentet?</h2>
+    <p>Ett klick räcker. Det är anonymt.</p>
     <div class="row" id="fbrow">
-      <button class="btn" data-fb="ja">Ja, det fungerade</button>
-      <button class="btn sec" data-fb="nej">Nej, det strulade</button>
+      <button class="btn" data-fb="bra">👍 Bra</button>
+      <button class="btn sec" data-fb="daligt">👎 Dåligt</button>
     </div>
-    <p class="status ok" id="fbthanks" hidden>Tack! Berätta gärna mer, till exempel vilken butik och vilken telefon, i kommentarerna under inlägget på <a href="https://www.linkedin.com/in/hakan---nilsson/" style="color:inherit">LinkedIn</a>.</p>
+    <p class="status ok" id="fbthanks" hidden>Tack! Har du provat i kassan får du gärna berätta hur det gick, och i vilken butik, i kommentarerna på <a href="https://www.linkedin.com/in/hakan---nilsson/" style="color:inherit">LinkedIn</a>.</p>
   </section>
 
   <section class="note">
@@ -193,7 +194,7 @@
       status("Koden är avläst.", "ok");
       track("korkort-avlasning", { resultat: "ok", kalla: src });
       render();
-      ["s2", "s3", "s4", "s5"].forEach(id => $(id).hidden = false);
+      ["s2", "s3", "s4"].forEach(id => $(id).hidden = false);
       $("s2").scrollIntoView({ behavior: "smooth", block: "start" });
     } catch (err) {
       status("Något gick fel när koden skulle läsas av. Ladda om sidan och prova igen.", "err");
@@ -229,7 +230,7 @@
   $("size").addEventListener("input", render);
 
   document.querySelectorAll("[data-fb]").forEach(b => b.addEventListener("click", () => {
-    track("korkort-fungerade", { svar: b.dataset.fb });
+    track("korkort-reaktion", { svar: b.dataset.fb });
     $("fbrow").hidden = true; $("fbthanks").hidden = false;
   }));
 
